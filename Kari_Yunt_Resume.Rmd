@@ -1,0 +1,154 @@
+---
+title: Kari Yunt's Resume"
+author: Kari Yunt
+date: "`r Sys.Date()`"
+output:
+  pagedown::html_resume:
+    css: ['css/custom_resume.css', 'css/styles.css', 'resume']
+    # set it to true for a self-contained HTML page but it'll take longer to render
+    self_contained: true
+---
+
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(
+  results='asis', 
+  echo = FALSE
+)
+library(tidyverse)
+library(glue)
+
+# Set this to true to have links turned into footnotes at the end of the document
+PDF_EXPORT <- FALSE
+
+# Holds all the links that were inserted for placement at the end
+links <- c()
+
+source('parsing_functions.R')
+
+
+# First let's get the data, filtering to only the items tagged as
+# Resume items
+position_data <- read_csv('positions_KY.csv') %>% 
+filter(in_resume) %>% 
+  mutate(
+    # Build some custom sections by collapsing others
+    section = case_when(
+      section %in% c('PRG_ year_up_positions', 'general_positions') ~ 'positions', 
+      section %in% c('VOL_positions', 'Training_ Certifications') ~ 'PD',
+      TRUE ~ section
+    )
+  ) 
+
+```
+
+
+Aside
+================================================================================
+
+
+![logo](beta_dist.png){width=100%}
+
+Contact {#contact}
+--------------------------------------------------------------------------------
+
+
+
+- <i class="fa fa-envelope"></i> yunt.kari@gmail.com
+- <i class="fa fa-github"></i> github.com/KariAnne251
+- <i class="fa fa-link"></i>[Linkedin](https://www.linkedin.com/in/karischerling/)
+- <i class="fa fa-phone"></i> (480)582-8762
+
+
+
+Tools & Technical Skills {#skills}
+--------------------------------------------------------------------------------
+
+
+```{r}
+skills <- tribble(
+  ~skill,               ~level,
+  "R language",         3,
+  "SalesForce",         4,
+  "Tableau",            3,
+  "HTML",               1,
+  "Canva",              3,
+  "Excel/ Powerpoint",  4,
+  "AI/LLMs",            2
+)
+build_skill_bars(skills)
+```
+
+
+
+Note on Technical Skills {#open-source}
+--------------------------------------------------------------------------------
+
+I am committed to lifelong learning, and using this next season of my career to: 
+
+
+- engage in technology trends
+- developing my knowledge of R, HTML, SQL, python and other languages 
+- apply these skills to achieve data driven solutions 
+
+
+More info {#more-info}
+--------------------------------------------------------------------------------
+
+Let's chat! I am happy to share more about my experience, skills and career goals.
+
+
+Disclaimer {#disclaimer}
+--------------------------------------------------------------------------------
+
+Made w/ [**pagedown**](https://github.com/rstudio/pagedown). 
+
+Source code: [github.com/nstrayer/cv](https://github.com/nstrayer/cv).
+
+Last updated on `r Sys.Date()`.
+
+
+
+
+Main
+================================================================================
+
+Kari Yunt {#title}
+--------------------------------------------------------------------------------
+
+```{r}
+intro_text <- "Program leader with a decade of experience in program delivery and a passion for creating data-driven solutions. Extensive work in national and international markets, filling roles ranging from operations, to associate director. Currently strengthening skills in program evaluation and data analytics and applying R programming tools to measure program impact and elevate program performance.
+
+I am currently seeking internship, partime or flexible fulltime opportunities working with teams to leverage statistical, analytical, and optimization techniques to analyze data, identify opportunities, and drive process or program improvements."
+
+
+cat(sanitize_links(intro_text))
+```
+
+
+
+Education {data-icon=graduation-cap data-concise=true}
+--------------------------------------------------------------------------------
+
+```{r}
+position_data %>% print_section('education')
+```
+
+
+
+Experience {data-icon=suitcase}
+--------------------------------------------------------------------------------
+
+```{r}
+position_data %>% print_section('positions')
+```
+
+Leadership & Professional Development {data-icon=newspaper}
+--------------------------------------------------------------------------------
+
+
+```{r}
+position_data %>% print_section('PD')
+```
+
+

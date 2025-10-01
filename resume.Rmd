@@ -1,6 +1,6 @@
 ---
-title: Nick Strayer's Resume"
-author: Nick Strayer
+title: Kari Yunt's Resume"
+author: Kari Yunt
 date: "`r Sys.Date()`"
 output:
   pagedown::html_resume:
@@ -54,28 +54,27 @@ Contact {#contact}
 
 
 
-- <i class="fa fa-envelope"></i> nick.strayer@gmail.com
-- <i class="fa fa-twitter"></i> NicholasStrayer
-- <i class="fa fa-github"></i> github.com/nstrayer
-- <i class="fa fa-link"></i> [nickstrayer.me](http://nickstrayer.me/)
-- <i class="fa fa-phone"></i> (734) 645-0110
+- <i class="fa fa-envelope"></i> yunt.kari@gmail.com
+- <i class="fa fa-github"></i> github.com/KariAnne251
+- <i class="fa fa-link"></i>[Linkedin](https://www.linkedin.com/in/karischerling/)
+- <i class="fa fa-phone"></i> (480)582-8762
 
 
 
-Language Skills {#skills}
+Tools & Technical Skills {#skills}
 --------------------------------------------------------------------------------
 
 
 ```{r}
 skills <- tribble(
   ~skill,               ~level,
-  "R",                  5,
-  "Javascript (d3.js)", 4.5,
-  "Python",             4,
-  "Bash",               3.5,
-  "SQL",                3,
-  "C++",                3,
-  "AWK",                3
+  "R language",         3,
+  "SalesForce",         4,
+  "Tableau",            3,
+  "HTML",               1,
+  "Canva",              3,
+  "Excel",              4,
+  "AI/LLMs",            2
 )
 build_skill_bars(skills)
 ```
