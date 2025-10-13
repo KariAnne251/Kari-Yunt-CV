@@ -18,6 +18,7 @@ knitr::opts_chunk$set(
 library(tidyverse)
 library(glue)
 
+
 # Set this to true to have links turned into footnotes at the end of the document
 PDF_EXPORT <- FALSE
 
@@ -30,11 +31,11 @@ source('parsing_functions.R')
 # First let's get the data, filtering to only the items tagged as
 # Resume items
 position_data <- read_csv('positions_KY.csv') %>% 
-filter(in_resume) %>% 
+  filter(in_resume) %>% 
   mutate(
     # Build some custom sections by collapsing others
     section = case_when(
-      section %in% c('PRG_ year_up_positions', 'general_positions') ~ 'positions', 
+      section %in% c('STRAT_year_up', 'general_positions') ~ 'positions', 
       section %in% c('VOL_positions', 'Training_ Certifications') ~ 'PD',
       TRUE ~ section
     )
@@ -47,7 +48,7 @@ Aside
 ================================================================================
 
 
-![logo](beta_dist.png){width=100%}
+![logo](r_headshot.png){width=100%}
 
 Contact {#contact}
 --------------------------------------------------------------------------------
@@ -72,7 +73,7 @@ skills <- tribble(
   "SalesForce",         4,
   "Tableau",            3,
   "HTML",               1,
-  "Canva",              3,
+  "Canva",              4,
   "Excel/ Powerpoint",  4,
   "AI/LLMs",            2
 )
@@ -87,9 +88,8 @@ Note on Technical Skills {#open-source}
 I am committed to lifelong learning, and using this next season of my career to: 
 
 
-- engage in technology trends
-- developing my knowledge of R, HTML, SQL, python and other languages 
-- apply these skills to achieve data driven solutions 
+- Engage in technology trends
+- Further develop my knowledge of R, HTML and other languages like SQL and python.
 
 
 More info {#more-info}
@@ -101,12 +101,6 @@ Let's chat! I am happy to share more about my experience, skills and career goal
 Disclaimer {#disclaimer}
 --------------------------------------------------------------------------------
 
-Made w/ [**pagedown**](https://github.com/rstudio/pagedown). 
-
-Source code: [github.com/nstrayer/cv](https://github.com/nstrayer/cv).
-
-Last updated on `r Sys.Date()`.
-
 
 
 
@@ -117,9 +111,7 @@ Kari Yunt {#title}
 --------------------------------------------------------------------------------
 
 ```{r}
-intro_text <- "Program leader with a decade of experience in program delivery and a passion for creating data-driven solutions. Extensive work in national and international markets, filling roles ranging from operations, to associate director. Currently strengthening skills in program evaluation and data analytics and applying R programming tools to measure program impact and elevate program performance.
-
-I am currently seeking internship, partime or flexible fulltime opportunities working with teams to leverage statistical, analytical, and optimization techniques to analyze data, identify opportunities, and drive process or program improvements."
+intro_text <- "Collaborative and optimistic leader with a decade of experience in program delivery and a passion for creating data-driven solutions. Currently seeking internship, partime or flexible fulltime opportunities working with teams to leverage statistical, analytical, and optimization techniques to analyze data, identify opportunities, and drive process or program improvements."
 
 
 cat(sanitize_links(intro_text))
@@ -150,5 +142,4 @@ Leadership & Professional Development {data-icon=newspaper}
 ```{r}
 position_data %>% print_section('PD')
 ```
-
 
